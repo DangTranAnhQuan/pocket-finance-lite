@@ -32,6 +32,7 @@ private fun TransactionEntity.toDomain() = Transaction(
     category = category,
     note = note,
     occurredAtEpochMillis = occurredAtEpochMillis,
+    createdAtEpochMillis = createdAtEpochMillis,
 )
 
 private fun Transaction.toEntity() = TransactionEntity(
@@ -41,4 +42,5 @@ private fun Transaction.toEntity() = TransactionEntity(
     category = category,
     note = note,
     occurredAtEpochMillis = occurredAtEpochMillis,
+    createdAtEpochMillis = createdAtEpochMillis,
 )

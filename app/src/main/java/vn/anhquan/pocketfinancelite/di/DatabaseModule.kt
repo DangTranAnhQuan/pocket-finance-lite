@@ -1,4 +1,4 @@
-package vn.anhquan.pocketfinancelite.di
+package vn.anhquan.pocketfinancelite.data.di
 
 import android.content.Context
 import androidx.room.Room
@@ -7,18 +7,25 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 import vn.anhquan.pocketfinancelite.data.local.AppDatabase
 import vn.anhquan.pocketfinancelite.data.local.dao.TransactionDao
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
-    @Provides @Singleton
-    fun provideDatabase(@ApplicationContext context: Context): AppDatabase =
-        Room.databaseBuilder(context, AppDatabase::class.java, "pocket_finance.db")
+    @Provides
+    @Singleton
+    fun provideDatabase(@ApplicationContext context: Context): AppDatabase {
+        return Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            "pocket_finance.db"
+        )
+            .fallbackToDestructiveMigration()
             .build()
+    }
 
     @Provides
     fun provideTransactionDao(db: AppDatabase): TransactionDao = db.transactionDao()
