@@ -12,7 +12,8 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun TransactionFormScreen(
-   onBack: () -> Unit,
+    transactionId: Long? = null,
+    onBack: () -> Unit,
 ) {
     Column (
         modifier = Modifier.fillMaxSize().padding(16.dp),

@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
 import vn.anhquan.pocketfinancelite.ui.navigation.AppNavHost
 import vn.anhquan.pocketfinancelite.ui.theme.PocketFinanceLiteTheme
 @AndroidEntryPoint
