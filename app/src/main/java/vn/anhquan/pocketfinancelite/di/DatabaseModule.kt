@@ -1,4 +1,4 @@
-package vn.anhquan.pocketfinancelite.data.di
+package vn.anhquan.pocketfinancelite.di
 
 import android.content.Context
 import androidx.room.Room

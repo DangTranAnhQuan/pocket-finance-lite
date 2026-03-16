@@ -51,6 +51,7 @@ dependencies {
     // HILT (Dependency Injection)
     // FIX: Using one consistent version (2.51.1 or 2.52 is stable for KSP/K2)
     implementation(libs.hilt.android)
+    implementation(libs.androidx.foundation)
     ksp(libs.hilt.compiler)
 
     // Hilt Navigation
@@ -70,4 +71,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     debugImplementation(libs.androidx.ui.tooling)
+    implementation(kotlin("test"))
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    testImplementation("io.mockk:mockk:1.13.12")
 }
