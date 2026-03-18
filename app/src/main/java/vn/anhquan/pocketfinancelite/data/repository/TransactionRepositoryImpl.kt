@@ -4,7 +4,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import vn.anhquan.pocketfinancelite.data.local.dao.TransactionDao
+import vn.anhquan.pocketfinancelite.data.local.dto.MonthlySummaryDto
 import vn.anhquan.pocketfinancelite.data.local.entity.TransactionEntity
+import vn.anhquan.pocketfinancelite.domain.model.MonthlySummary
 import vn.anhquan.pocketfinancelite.domain.model.Transaction
 import vn.anhquan.pocketfinancelite.domain.repository.TransactionRepository
 
@@ -14,6 +16,9 @@ class TransactionRepositoryImpl @Inject constructor(
 
     override fun observeByRange(from: Long, to: Long): Flow<List<Transaction>> =
         dao.observeByRange(from, to).map { list -> list.map { it.toDomain() } }
+
+    override fun observeMonthlySummary(from: Long, to: Long): Flow<List<MonthlySummary>> =
+        dao.observeMonthlySummary(from, to).map { list -> list.map { it.toDomain() } }
 
     override suspend fun upsert(tx: Transaction): Long =
         dao.upsert(tx.toEntity())
@@ -25,6 +30,12 @@ class TransactionRepositoryImpl @Inject constructor(
         dao.getById(id)?.toDomain()
 }
 
+private fun MonthlySummaryDto.toDomain() = MonthlySummary(
+    year = year,
+    month = month,
+    totalIncome = totalIncome,
+    totalExpense = totalExpense,
+)
 private fun TransactionEntity.toDomain() = Transaction(
     id = id,
     amount = amount,
@@ -44,3 +55,4 @@ private fun Transaction.toEntity() = TransactionEntity(
     occurredAtEpochMillis = occurredAtEpochMillis,
     createdAtEpochMillis = createdAtEpochMillis,
 )
+
